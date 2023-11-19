@@ -1,6 +1,10 @@
 import fs from 'fs'
 import { parse } from 'csv-parse'
 
+
+// Ändra till class
+
+// Ändra till getters
 export const moviesMap = new Map()
 export const usersMap = new Map()
 export const ratingsMap = new Map()

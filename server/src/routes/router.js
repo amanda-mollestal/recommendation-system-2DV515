@@ -4,6 +4,7 @@ import createError from 'http-errors'
 import { usersMap } from '../models/dataCollector.js'
 import { moviesMap } from '../models/dataCollector.js'
 import { ratingsMap } from '../models/dataCollector.js'
+import { router as matchRouter } from './matchRouter.js'
 
 
 export const router = express.Router()
@@ -19,6 +20,16 @@ router.get('/', (req, res) => {
     message: 'WELCOME TO THE API'
   })
 })
+
+router.get('/users', (req, res) => {
+  console.log(usersMap)
+  res.json(Array.from(usersMap.values()))
+})
+
+router.use('/matches', matchRouter)
+//router.use('/matches', () =>
+  //console.log('first'), matchRouter)  
+
 
 
 
