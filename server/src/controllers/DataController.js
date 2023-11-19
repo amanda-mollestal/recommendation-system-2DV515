@@ -6,6 +6,7 @@ export class DataController {
   constructor() {
     this.dataCollector = new DataCollector()
     console.log('hej från datacontroller')
+    this.getMatches('7')
   }
 
   async loadUser(req, res, next, userId) {
@@ -18,7 +19,12 @@ export class DataController {
 
   getMatches(userId) {
 
-    console.log('hej från getMatches')
+    setTimeout(() => {
+      this.dataCollector.getMatches(userId)
+    }, 3000);
+
+    
+
 
   }
 }
