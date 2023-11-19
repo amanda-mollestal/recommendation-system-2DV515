@@ -1,17 +1,18 @@
 import express from 'express'
 import createError from 'http-errors'
-import { MatchController } from '../controllers/matchController.js'
+import { DataController } from '../controllers/DataController.js'
 
-const matchController = new MatchController()
-
+const dataController = new DataController()
+console.log('hej från matchRouter')
 
 export const router = express.Router()
 
 router.param('userId', (req, res, next, userId) => {
-  console.log('matchrouter: ' + userId)
-  matchController.loadUser(req, res, next, userId)
+  dataController.loadUser(req, res, next, userId)
 })
 
 router.get('/:userId', (req, res) => {
   console.log('kom till get nu')
+
+  dataController.getMatches(req.user)
 })

@@ -1,19 +1,13 @@
 import express from 'express'
 import createError from 'http-errors'
 //import { router as accountRouter } from './api/v1/account-router.js'
-import { usersMap } from '../models/dataCollector.js'
-import { moviesMap } from '../models/dataCollector.js'
-import { ratingsMap } from '../models/dataCollector.js'
+
 import { router as matchRouter } from './matchRouter.js'
 
 
 export const router = express.Router()
 
 router.get('/', (req, res) => {
-
-  console.log(usersMap)
-  console.log(moviesMap)
-  console.log(ratingsMap)
 
 
   res.json({
@@ -22,8 +16,8 @@ router.get('/', (req, res) => {
 })
 
 router.get('/users', (req, res) => {
-  console.log(usersMap)
-  res.json(Array.from(usersMap.values()))
+  //console.log(usersMap)
+  //res.json(Array.from(usersMap.values()))
 })
 
 router.use('/matches', matchRouter)

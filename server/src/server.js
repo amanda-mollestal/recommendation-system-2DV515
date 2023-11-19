@@ -4,8 +4,8 @@ import helmet from 'helmet'
 import logger from 'morgan'
 import createError from 'http-errors'
 import { router } from './routes/router.js'
-import { loadCsvData } from '../src/models/dataCollector.js'
-import path from 'path'
+// import { loadCsvData } from '../src/models/dataCollector.js'
+
 
 const app = express()
 
@@ -28,9 +28,9 @@ async function startServer() {
     app.use('/', router)
 
 
-    await loadCsvData('./movies_example/movies.csv', 'movies')
-    await loadCsvData('./movies_example/users.csv', 'users')
-    await loadCsvData('./movies_example/ratings.csv', 'ratings')
+   // await loadCsvData('./movies_example/movies.csv', 'movies')
+   // await loadCsvData('./movies_example/users.csv', 'users')
+   // await loadCsvData('./movies_example/ratings.csv', 'ratings')
 
 
 
