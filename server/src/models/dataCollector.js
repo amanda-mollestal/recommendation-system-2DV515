@@ -1,7 +1,6 @@
 import fs from 'fs'
 import { parse } from 'csv-parse'
 
-
 export class DataCollector {
   moviesMap
   usersMap
@@ -22,27 +21,32 @@ export class DataCollector {
   }
 
   async loadCsvData(filePath, fileType) {
-    return new Promise((resolve, reject) => {
-      fs.createReadStream(filePath)
-        .pipe(parse({
-          columns: true,
-          trim: true,
-          delimiter: ';'
-        }))
-        .on('data', (record) => {
-          try {
-            this.processRecord(record, fileType)
-          } catch (err) {
-            reject(err)
-          }
-        })
-        .on('end', () => {
-          resolve()
-        })
-        .on('error', (err) => {
-          reject(err)
-        })
-    })
+    try {
+      return new Promise((resolve, reject) => {
+        fs.createReadStream(filePath)
+          .pipe(parse({
+            columns: true,
+            trim: true,
+            delimiter: ';'
+          }))
+          .on('data', (record) => {
+            try {
+              this.processRecord(record, fileType)
+            } catch (error) {
+              reject(error)
+            }
+          })
+          .on('end', () => {
+            resolve()
+          })
+          .on('error', (error) => {
+            reject(error)
+          })
+      })
+    } catch (error) {
+      throw new Error(`Error reading file: ${filePath}`)
+    }
+
   }
 
   processRecord(record, fileType) {
@@ -64,7 +68,6 @@ export class DataCollector {
     }
   }
 
-
   getAllUsers() {
     if (this.usersMap && this.usersMap.size > 0) {
       const users = []
@@ -73,16 +76,19 @@ export class DataCollector {
       })
       return users
     } else {
-      console.log('no users')
-      return {}
+      throw new Error('No users found')
     }
   }
 
   getMatches(userId) {
-    const matchingUsers = this.findMatchingUsers(userId)
-    const recommendations = this.recommendMovies(userId, matchingUsers)
-    const userMatches = { users: matchingUsers, movies: recommendations}
-   return userMatches
+    try {
+      const matchingUsers = this.findMatchingUsers(userId)
+      const recommendations = this.recommendMovies(userId, matchingUsers)
+      const userMatches = { users: matchingUsers, movies: recommendations }
+      return userMatches
+    } catch (error) {
+      throw new Error('Error finding matches')
+    }
   }
 
   findMatchingUsers(targetUser) {
@@ -119,7 +125,6 @@ export class DataCollector {
     })
 
     if (commonMovies === 0) return null
-
     return 1 / (1 + similarity)
   }
 
@@ -140,7 +145,6 @@ export class DataCollector {
         }
       }
     }
-
 
     let recommendations = []
 

@@ -7,23 +7,19 @@ export const router = express.Router()
 const dataController = new DataController()
 
 router.get('/', (req, res) => {
-  res.json({
-    message: 'WELCOME TO THE API'
-  })
+  res.status(200).json('WELCOME TO THE API')
 })
 
 router.param('userId', (req, res, next, userId) => {
   dataController.loadUser(req, res, next, userId)
 })
 
-router.get('/users', (req, res) => {
-  const users = dataController.getAllUsers()
-  res.json(users)
+router.get('/users', (req, res, next) => {
+  dataController.getAllUsers(req, res, next)
 })
 
-router.get('/:userId', (req, res) => {
-  const matches = dataController.getMatches(req.user)
-  res.json(matches)
+router.get('/:userId', (req, res, next) => {
+  dataController.getMatches(req, res, next)
 })
 
 

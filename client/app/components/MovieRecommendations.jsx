@@ -62,7 +62,7 @@ export function MovieRecommendations({ users }) {
         </button>
       </div>
 
-      <div className="mt-4 px-10 text-gray-300 overflow-x-auto">
+      <div className="mt-4 px-8 text-gray-300 overflow-x-auto">
         {activeTab === 'movies' && content.movies.length > 0 && (
           <table className="min-w-full bg-gray-800 rounded-md">
             <thead>

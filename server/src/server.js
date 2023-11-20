@@ -1,12 +1,9 @@
-
 import express from 'express'
 import helmet from 'helmet'
 import logger from 'morgan'
 import createError from 'http-errors'
 import { router } from './routes/router.js'
 import cors from 'cors'
-// import { loadCsvData } from '../src/models/dataCollector.js'
-
 
 const app = express()
 
@@ -16,7 +13,8 @@ async function startServer() {
     // Set various HTTP headers to make the application little more secure (https://www.npmjs.com/package/helmet).
     app.use(helmet())
 
-    app.use(cors());
+    // Enable CORS
+    app.use(cors())
 
     // Set up a morgan logger using the dev format for log entries.
     app.use(logger('dev'))
@@ -29,13 +27,6 @@ async function startServer() {
 
     // Register routes.
     app.use('/', router)
-
-
-   // await loadCsvData('./movies_example/movies.csv', 'movies')
-   // await loadCsvData('./movies_example/users.csv', 'users')
-   // await loadCsvData('./movies_example/ratings.csv', 'ratings')
-
-
 
     // Error handler.
     app.use((err, req, res, next) => {

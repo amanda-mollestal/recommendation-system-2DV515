@@ -1,5 +1,12 @@
 # A1 - Recommendation System
 
+
+## Want to test the application?
+See README.md in the `server` and `client` folders.
+
+
+-------------------------------
+
 ## Description
 
 * In this assignment, you shall implement a recommendation system for the movie's data set.

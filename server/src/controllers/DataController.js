@@ -7,16 +7,30 @@ export class DataController {
     this.dataCollector = new DataCollector()
   }
 
-  async loadUser(req, res, next, userId) {
-    req.user = userId
-    next()
+  loadUser(req, res, next, userId) {
+    try {
+      req.user = userId
+      next()
+    } catch (error) {
+      next(error)
+    }
   }
 
-  getAllUsers() {
-    return this.dataCollector.getAllUsers()
+  getAllUsers(req, res, next) {
+    try {
+      const users = this.dataCollector.getAllUsers()
+      res.status(200).json(users)
+    } catch (error) {
+      next(error)
+    }
   }
 
-  getMatches(userId) {
-     return this.dataCollector.getMatches(`${userId}`)
+  getMatches(req, res, next) {
+    try {
+      const matches = this.dataCollector.getMatches(`${req.user}`)
+      res.status(200).json(matches)
+    } catch (error) {
+      next(error)
+    }
   }
 }
