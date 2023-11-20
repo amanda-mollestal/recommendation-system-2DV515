@@ -65,7 +65,7 @@ async function startServer() {
     })
 
     // Starts the HTTP server listening for connections.
-    const PORT = process.env.PORT || 3000
+    const PORT = process.env.PORT || 3030
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`)
       console.log('Press Ctrl-C to terminate...')

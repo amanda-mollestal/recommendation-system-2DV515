@@ -1,31 +1,32 @@
 import express from 'express'
 import createError from 'http-errors'
-//import { router as accountRouter } from './api/v1/account-router.js'
-
-import { router as matchRouter } from './matchRouter.js'
-
+import { DataController } from '../controllers/DataController.js'
 
 export const router = express.Router()
 
+const dataController = new DataController()
+
 router.get('/', (req, res) => {
-
-
   res.json({
     message: 'WELCOME TO THE API'
   })
 })
 
-router.get('/users', (req, res) => {
-  //console.log(usersMap)
-  //res.json(Array.from(usersMap.values()))
+
+router.param('userId', (req, res, next, userId) => {
+  dataController.loadUser(req, res, next, userId)
 })
 
-router.use('/matches', matchRouter)
-//router.use('/matches', () =>
-  //console.log('first'), matchRouter)  
+router.get('/users', (req, res) => {
+  const users = dataController.getAllUsers()
+  res.json(users)
+})
 
-
-
+router.get('/:userId', (req, res) => {
+  console.log('kom till get nu')
+  const matches = dataController.getMatches(req.user)
+  res.json(matches)
+})
 
 
 // Catch 404 (ALWAYS keep this as the last route).
