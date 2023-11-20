@@ -1,4 +1,4 @@
-import { MovieRecommendations } from './components/MovieRecommendations'
+import { Matches } from './components/Matches'
 
 export default async function Home() {
 
@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center px-4 py-8 bg-gray-900 text-white">
-      <MovieRecommendations users={users} />
+      <Matches users={users} />
     </main>
   )
 }

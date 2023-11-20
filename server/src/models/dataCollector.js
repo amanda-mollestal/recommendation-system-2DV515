@@ -124,7 +124,7 @@ export class DataCollector {
       }
     })
 
-    if (commonMovies === 0) return null
+    if (commonMovies === 0) return 0
     return 1 / (1 + similarity)
   }
 

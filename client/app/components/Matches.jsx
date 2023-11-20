@@ -2,14 +2,11 @@
 
 import { useState } from 'react'
 
-export function MovieRecommendations({ users }) {
-
+export function Matches({ users }) {
 
   const [selectedUser, setSelectedUser] = useState('')
   const [content, setContent] = useState({ users: [], movies: [] })
   const [activeTab, setActiveTab] = useState('movies')
-
-
 
   const handleSearch = async () => {
     if (!selectedUser) return
@@ -32,7 +29,7 @@ export function MovieRecommendations({ users }) {
           <option value="" className="text-gray-300">Select a user...</option>
           {users.map((user) => (
             <option key={user.id} value={user.id} className="text-gray-900">
-              {user.name}
+              {user.id}. {user.name}
             </option>
           ))}
         </select>
@@ -44,8 +41,6 @@ export function MovieRecommendations({ users }) {
       >
         Search
       </button>
-
-
 
       <div className="flex mt-6">
         <button

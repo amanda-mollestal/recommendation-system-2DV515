@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## To run this client on localhost:3000 (only for development):
 
+Navigate to the client folder and run the following commands:
+
 ```bash
 npm run dev
 # or
