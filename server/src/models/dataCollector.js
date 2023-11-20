@@ -67,11 +67,11 @@ export class DataCollector {
 
   getAllUsers() {
     if (this.usersMap && this.usersMap.size > 0) {
-      const usersObject = {}
+      const users = []
       this.usersMap.forEach((value, key) => {
-        usersObject[key] = value
+        users.push({ id: key, name: value.name })
       })
-      return usersObject
+      return users
     } else {
       console.log('no users')
       return {}
