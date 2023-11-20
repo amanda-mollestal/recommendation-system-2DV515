@@ -79,9 +79,6 @@ export class DataCollector {
   }
 
   getMatches(userId) {
-
-    //const sim = this.euclideanDistance(userId, '2)
-    //console.log(sim)
     const matchingUsers = this.findMatchingUsers(userId)
     const recommendations = this.recommendMovies(userId, matchingUsers)
     const userMatches = { users: matchingUsers, movies: recommendations}
@@ -108,11 +105,8 @@ export class DataCollector {
 
   euclideanDistance(userA, userB) {
 
-    //console.log(this.ratingsMap.get(userId1))
     const ratingsA = this.ratingsMap.get(userA)
     const ratingsB = this.ratingsMap.get(userB)
-    console.log(ratingsA)
-    console.log(ratingsB)
 
     let similarity = 0
     let commonMovies = 0
@@ -130,7 +124,6 @@ export class DataCollector {
   }
 
   recommendMovies(targetUser, matchingUsers) {
-    // const similarUsers = findSimilarUsers(targetUser, allUsers)
     let movieScores = {}
 
     for (const matchingUser of matchingUsers) {

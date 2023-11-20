@@ -5,17 +5,11 @@ export class DataController {
 
   constructor() {
     this.dataCollector = new DataCollector()
-    console.log('hej från datacontroller')
   }
 
   async loadUser(req, res, next, userId) {
-
-    console.log('hej från loadUser')
-    console.log(userId)
     req.user = userId
-
     next()
-
   }
 
   getAllUsers() {
@@ -23,10 +17,6 @@ export class DataController {
   }
 
   getMatches(userId) {
-
      return this.dataCollector.getMatches(`${userId}`)
-
-
-
   }
 }

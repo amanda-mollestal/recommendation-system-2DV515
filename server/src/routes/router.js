@@ -12,7 +12,6 @@ router.get('/', (req, res) => {
   })
 })
 
-
 router.param('userId', (req, res, next, userId) => {
   dataController.loadUser(req, res, next, userId)
 })
@@ -23,7 +22,6 @@ router.get('/users', (req, res) => {
 })
 
 router.get('/:userId', (req, res) => {
-  console.log('kom till get nu')
   const matches = dataController.getMatches(req.user)
   res.json(matches)
 })
