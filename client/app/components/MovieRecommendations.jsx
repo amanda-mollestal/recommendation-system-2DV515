@@ -49,35 +49,35 @@ export function MovieRecommendations({ users }) {
 
       <div className="flex mt-6">
         <button
-          className={`py-2 px-4 ${activeTab === 'movies' ? 'bg-gray-700' : 'bg-gray-600'}`}
+          className={`py-2 px-4 flex-1 ${activeTab === 'movies' ? 'bg-gray-600' : 'bg-gray-700'}`}
           onClick={() => setActiveTab('movies')}
         >
           Movie Recommendations
         </button>
         <button
-          className={`py-2 px-4 flex-grow ${activeTab === 'users' ? 'bg-gray-700' : 'bg-gray-600'}`}
+          className={`py-2 px-4 flex-1 ${activeTab === 'users' ? 'bg-gray-600' : 'bg-gray-700'}`}
           onClick={() => setActiveTab('users')}
         >
           Matching Users
         </button>
       </div>
 
-      <div className="mt-4 text-gray-300 overflow-x-auto">
+      <div className="mt-4 px-10 text-gray-300 overflow-x-auto">
         {activeTab === 'movies' && content.movies.length > 0 && (
           <table className="min-w-full bg-gray-800 rounded-md">
             <thead>
               <tr className="border-b border-gray-700">
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">ID</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Title</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Score</th>
+                <th className="w-1/6 px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">ID</th>
+                <th className="w-2/3 px-4 py-2 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">Title</th>
+                <th className="w-1/6 px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Score</th>
               </tr>
             </thead>
             <tbody>
               {content.movies.map((movie) => (
                 <tr key={movie.id} className="border-b border-gray-700">
-                  <td className="px-4 py-2 whitespace-nowrap">{movie.id}</td>
-                  <td className="px-4 py-2 whitespace-nowrap">{movie.title}</td>
-                  <td className="px-4 py-2 whitespace-nowrap">{movie.weightedScore.toFixed(4)}</td>
+                  <td className="w-1/6 px-4 py-2 whitespace-nowrap">{movie.id}</td>
+                  <td className="w-2/3 text-center px-4 py-2 whitespace-nowrap">{movie.title}</td>
+                  <td className="w-1/6 px-4 py-2 whitespace-nowrap">{movie.weightedScore.toFixed(4)}</td>
                 </tr>
               ))}
             </tbody>
@@ -87,23 +87,24 @@ export function MovieRecommendations({ users }) {
           <table className="min-w-full bg-gray-800 rounded-md">
             <thead>
               <tr className="border-b border-gray-700">
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">ID</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Name</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Similarity</th>
+                <th className="w-1/6 px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">ID</th>
+                <th className="w-2/3 px-4 py-2 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">Name</th>
+                <th className="w-1/6 px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Similarity</th>
               </tr>
             </thead>
             <tbody>
               {content.users.map((user) => (
                 <tr key={user.userId} className="border-b border-gray-700">
-                  <td className="px-4 py-2 whitespace-nowrap">{user.userId}</td>
-                  <td className="px-4 py-2 whitespace-nowrap">{user.name}</td>
-                  <td className="px-4 py-2 whitespace-nowrap">{user.similarity.toFixed(4)}</td>
+                  <td className="w-1/6 px-4 py-2 whitespace-nowrap">{user.userId}</td>
+                  <td className="w-2/3 px-4 py-2 text-center whitespace-nowrap">{user.name}</td>
+                  <td className="w-1/6 px-4 py-2 whitespace-nowrap">{user.similarity.toFixed(4)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         )}
       </div>
+
 
     </div>
   )
